@@ -268,6 +268,755 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Dados Válidos — Testes Adicionais",
+      "description": "10 testes adicionais com dados válidos cobrindo diferentes Pokémon e endpoints da PokéAPI.",
+      "item": [
+        {
+          "name": "Buscar Pokémon por nome — Squirtle",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/squirtle",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "squirtle"]
+            },
+            "description": "Busca o Pokémon Squirtle e valida ID, tipo e tempo de resposta."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Nome do Pokémon deve ser squirtle', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.name).to.equal('squirtle');",
+                  "});",
+                  "",
+                  "pm.test('ID do Squirtle deve ser 7', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.id).to.equal(7);",
+                  "});",
+                  "",
+                  "pm.test('Squirtle deve ser do tipo água (water)', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    const tipos = resposta.types.map(function (t) { return t.type.name; });",
+                  "    pm.expect(tipos).to.include('water');",
+                  "});",
+                  "",
+                  "pm.test('Tempo de resposta deve ser menor que 3 segundos', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Pokémon por nome — Gengar",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/gengar",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "gengar"]
+            },
+            "description": "Busca o Pokémon Gengar e valida ID, tipos ghost e poison."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Nome do Pokémon deve ser gengar', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.name).to.equal('gengar');",
+                  "});",
+                  "",
+                  "pm.test('ID do Gengar deve ser 94', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.id).to.equal(94);",
+                  "});",
+                  "",
+                  "pm.test('Gengar deve ter dois tipos', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.types).to.have.lengthOf(2);",
+                  "});",
+                  "",
+                  "pm.test('Gengar deve ser do tipo fantasma (ghost)', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    const tipos = resposta.types.map(function (t) { return t.type.name; });",
+                  "    pm.expect(tipos).to.include('ghost');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Pokémon por nome — Mewtwo",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/mewtwo",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "mewtwo"]
+            },
+            "description": "Busca o Pokémon Mewtwo e valida ID, tipo psychic e quantidade de tipos."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Nome do Pokémon deve ser mewtwo', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.name).to.equal('mewtwo');",
+                  "});",
+                  "",
+                  "pm.test('ID do Mewtwo deve ser 150', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.id).to.equal(150);",
+                  "});",
+                  "",
+                  "pm.test('Mewtwo deve ser do tipo psíquico (psychic)', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    const tipos = resposta.types.map(function (t) { return t.type.name; });",
+                  "    pm.expect(tipos).to.include('psychic');",
+                  "});",
+                  "",
+                  "pm.test('Mewtwo deve ter apenas um tipo', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.types).to.have.lengthOf(1);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Pokémon por nome — Snorlax",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/snorlax",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "snorlax"]
+            },
+            "description": "Busca o Pokémon Snorlax e valida ID, peso elevado e tipo normal."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Nome do Pokémon deve ser snorlax', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.name).to.equal('snorlax');",
+                  "});",
+                  "",
+                  "pm.test('ID do Snorlax deve ser 143', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.id).to.equal(143);",
+                  "});",
+                  "",
+                  "pm.test('Snorlax deve ter peso maior que 400', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.weight).to.be.above(400);",
+                  "});",
+                  "",
+                  "pm.test('Snorlax deve ser do tipo normal', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    const tipos = resposta.types.map(function (t) { return t.type.name; });",
+                  "    pm.expect(tipos).to.include('normal');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Pokémon por nome — Eevee",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/eevee",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "eevee"]
+            },
+            "description": "Busca o Pokémon Eevee e valida ID, sprites e estatísticas."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Nome do Pokémon deve ser eevee', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.name).to.equal('eevee');",
+                  "});",
+                  "",
+                  "pm.test('ID do Eevee deve ser 133', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.id).to.equal(133);",
+                  "});",
+                  "",
+                  "pm.test('Eevee deve ter campo sprites com imagem frontal', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.sprites).to.be.an('object');",
+                  "    pm.expect(resposta.sprites.front_default).to.be.a('string');",
+                  "});",
+                  "",
+                  "pm.test('Eevee deve ter campo stats não vazio', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.stats).to.be.an('array').that.is.not.empty;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar Pokémon — Paginação com offset 0 e limit 5",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon?limit=5&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon"],
+              "query": [
+                { "key": "limit", "value": "5" },
+                { "key": "offset", "value": "0" }
+              ]
+            },
+            "description": "Lista 5 Pokémon a partir do offset 0 e valida previous nulo e next presente."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Lista deve conter exatamente 5 Pokémon', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.results).to.have.lengthOf(5);",
+                  "});",
+                  "",
+                  "pm.test('Campo next deve existir', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.next).to.be.a('string');",
+                  "});",
+                  "",
+                  "pm.test('Campo previous deve ser nulo com offset 0', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.previous).to.be.null;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar Pokémon — Lista com 20 resultados",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon?limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon"],
+              "query": [
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "Lista 20 Pokémon e valida total, estrutura dos itens e contagem global."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Lista deve conter exatamente 20 Pokémon', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.results).to.have.lengthOf(20);",
+                  "});",
+                  "",
+                  "pm.test('Total de Pokémon na API deve ser maior que 1000', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.count).to.be.above(1000);",
+                  "});",
+                  "",
+                  "pm.test('Cada Pokémon da lista deve ter nome e URL', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    resposta.results.forEach(function (pokemon) {",
+                  "        pm.expect(pokemon).to.have.property('name');",
+                  "        pm.expect(pokemon).to.have.property('url');",
+                  "    });",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Tipo — Water",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/type/water",
+              "host": ["{{baseUrl}}"],
+              "path": ["type", "water"]
+            },
+            "description": "Busca o tipo Water e valida nome, relações de dano e lista de Pokémon."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Nome do tipo deve ser water', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.name).to.equal('water');",
+                  "});",
+                  "",
+                  "pm.test('Deve conter campo damage_relations', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta).to.have.property('damage_relations');",
+                  "    pm.expect(resposta.damage_relations).to.be.an('object');",
+                  "});",
+                  "",
+                  "pm.test('Deve conter lista de Pokémon com esse tipo', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.pokemon).to.be.an('array').that.is.not.empty;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Habilidade — Blaze",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/ability/blaze",
+              "host": ["{{baseUrl}}"],
+              "path": ["ability", "blaze"]
+            },
+            "description": "Busca a habilidade Blaze e valida nome e lista de Pokémon que a possuem."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Nome da habilidade deve ser blaze', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.name).to.equal('blaze');",
+                  "});",
+                  "",
+                  "pm.test('Deve conter lista de Pokémon com essa habilidade', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.pokemon).to.be.an('array').that.is.not.empty;",
+                  "});",
+                  "",
+                  "pm.test('Cada item da lista deve ter o nome do Pokémon', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    resposta.pokemon.forEach(function (item) {",
+                  "        pm.expect(item).to.have.property('pokemon');",
+                  "        pm.expect(item.pokemon).to.have.property('name');",
+                  "    });",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Espécie — Charizard",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon-species/charizard",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon-species", "charizard"]
+            },
+            "description": "Busca a espécie do Charizard e valida nome, status lendário e entradas de texto."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 200 OK', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Nome da espécie deve ser charizard', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.name).to.equal('charizard');",
+                  "});",
+                  "",
+                  "pm.test('Charizard não deve ser lendário', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.is_legendary).to.equal(false);",
+                  "});",
+                  "",
+                  "pm.test('Deve conter entradas de texto descritivo (flavor text)', function () {",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.flavor_text_entries).to.be.an('array').that.is.not.empty;",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dados Inválidos",
+      "description": "10 testes com dados inválidos que devem retornar erros da PokéAPI.",
+      "item": [
+        {
+          "name": "Buscar Pokémon — Nome inexistente",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/pokemon-inexistente",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "pokemon-inexistente"]
+            },
+            "description": "Tenta buscar um Pokémon com nome que não existe e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para nome inexistente', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Pokémon — ID zero",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/0",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "0"]
+            },
+            "description": "Tenta buscar o Pokémon de ID 0 (inexistente, a Pokédex começa em 1) e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para ID 0', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Pokémon — ID negativo",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/-1",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "-1"]
+            },
+            "description": "Tenta buscar um Pokémon com ID negativo e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para ID negativo', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Pokémon — ID muito alto (99999)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon", "99999"]
+            },
+            "description": "Tenta buscar um Pokémon com ID muito alto e inexistente, esperando 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para ID inexistente', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Tempo de resposta deve ser menor que 3 segundos', function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Tipo — ID inexistente (9999)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/type/9999",
+              "host": ["{{baseUrl}}"],
+              "path": ["type", "9999"]
+            },
+            "description": "Tenta buscar um tipo de Pokémon com ID inexistente e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para tipo inexistente', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Habilidade — ID inexistente (99999)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/ability/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["ability", "99999"]
+            },
+            "description": "Tenta buscar uma habilidade com ID inexistente e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para habilidade inexistente', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Espécie — ID inexistente (99999)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/pokemon-species/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["pokemon-species", "99999"]
+            },
+            "description": "Tenta buscar uma espécie com ID inexistente e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para espécie inexistente', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Berry — ID inexistente (99999)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/berry/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["berry", "99999"]
+            },
+            "description": "Tenta buscar uma berry com ID inexistente e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para berry inexistente', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Move — ID inexistente (99999)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/move/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["move", "99999"]
+            },
+            "description": "Tenta buscar um movimento com ID inexistente e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para move inexistente', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar Item — ID inexistente (99999)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/item/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["item", "99999"]
+            },
+            "description": "Tenta buscar um item com ID inexistente e espera 404."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Status deve ser 404 para item inexistente', function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});",
+                  "",
+                  "pm.test('Status não deve ser 200', function () {",
+                  "    pm.response.to.not.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
